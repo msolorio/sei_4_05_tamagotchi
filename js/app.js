@@ -1,6 +1,3 @@
-let timer;
-let count;
-
 class Tamagotchi {
   constructor(providedPetName) {
     this.petName = providedPetName;
