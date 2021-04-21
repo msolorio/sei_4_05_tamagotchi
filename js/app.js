@@ -19,14 +19,31 @@ class Tamagotchi {
     this.boredom && this.boredom--;
   }
 
-  age() {
+  increaseAge() {
     this.age++;
+  }
+
+  checkForAge(time) {
+    if (time % 15 === 0 && time > 0) {
+      this.increaseAge();
+    }
   }
   
   increaseAll() {
     this.hunger++;
     this.sleepiness++;
     this.boredom++;
+  }
+
+  display() {
+    $('#start').remove();
+    // $('#pet-area').append('<div id="pet" class="pet" />')
+    $('#pet-area').append('<img src="./images/dog.png" id="pet" class="pet" />')
+  }
+
+  animate() {
+    console.log('animate pet');
+    $('#pet').addClass('animating');
   }
 }
 
@@ -37,6 +54,7 @@ class Game {
     this.timer;
     this.count = 0;
     this.pet = providedPet;
+    this.gameOver = false;
   }
   
   increaseCount() {
@@ -48,6 +66,7 @@ class Game {
     $('#hunger').text(`Hunger: ${this.pet.hunger}`);
     $('#sleepiness').text(`Sleepiness: ${this.pet.sleepiness}`);
     $('#boredom').text(`Boredom: ${this.pet.boredom}`);
+    $('#age').text(`Age: ${this.pet.age}`)
   }
 
   addFeedListeners() {
@@ -77,17 +96,35 @@ class Game {
     this.addPlayListeners();
   }
 
-  displayPet() {
-    $('#start').remove();
-    $('#pet-area').append('<div id="pet" class="pet" />')
+  checkForGameOver() {
+    if (
+      this.pet.hunger >= 10
+      || this.pet.sleepiness >= 10
+      || this.pet.boredom >= 10
+    ) {
+      this.gameOver = true;
+      this.endGame();
+    }
+  }
+
+  endGame() {
+    clearInterval(this.timer);
+    $('#feed').off();
+    $('#lights').off();
+    $('#play').off();
+
+    $('#pet-area').text('Game Over');
   }
 
   startGame() {
     this.addGameListeners();
-    this.displayPet();
+    this.pet.display();
+    this.pet.animate();
 
     this.timer = setInterval(() => {
       this.pet.increaseAll();
+      this.pet.checkForAge(this.count);
+      // this.checkForGameOver();
       this.increaseCount();
       this.renderStats();
     }, 1000);

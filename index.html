@@ -4,31 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script defer src="./js/app.js"></script>
 </head>
 <body>
-    <header class="control-header">
-        <div id="stats">
-            <span id="timer">Timer: 0</span>
-            <span id="hunger">Hunger: 0</span>
-            <span id="sleepiness">Sleepiness: 0</span>
-            <span id="boredom">Boredom: 0</span>
-            <span id="age">Age: 0</span>
+    <header class="header">
+        <div class="branding">
+            <h1>Goobergotchi</h1>
         </div>
 
-        <div id="control">
-            <button id="feed">Feed</button>
-
-            <button id="lights">Switch Lights</button>
-
-            <button id="play">Play</button>
+        <div class="control-panel">
+            <div class="stats" id="stats">
+                <span class="stat" id="timer">Timer: 0</span>
+                <span class="stat" id="hunger">Hunger: 0</span>
+                <span class="stat" id="sleepiness">Sleepiness: 0</span>
+                <span class="stat" id="boredom">Boredom: 0</span>
+                <span class="stat" id="age">Age: 0</span>
+            </div>
+    
+            <div id="control">
+                <button class="controls-button" id="feed">Feed</button>
+    
+                <button class="controls-button" id="lights">Switch Lights</button>
+    
+                <button class="controls-button" id="play">Play</button>
+            </div>
         </div>
     </header>
 
-    <main id="pet-area">
-        <button id="start">Start</button>
-    </main>
+    <div class="container">
+        <main class="pet-area" id="pet-area">
+            <button class="start-button" id="start">Start</button>
+        </main>
+    </div>
 </body>
 </html>
